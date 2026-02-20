@@ -19,16 +19,11 @@ async def cmd_start(message: Message):
 
 
 @router.callback_query(F.data=='create_game')
-async def cmd_create(msg: Message):
+async def cmd_create(callback: CallbackQuery):
+    await callback.answer('Создание комнаты')
+    await callback.message.reply('')
+
+
+@router.callback_query(F.data=='rooms_list')
+async def cmd_rooms_list(callback: CallbackQuery):
     pass
-
-
-@router.callback_query(F.data=='rooms_list?')
-async def cmd_rooms_list(msg: Message):
-    pass
-
-
-@router.callback_query(F.data=="catalog")# для отработки callback_data у inline кнопок
-async def catalog(callback: CallbackQuery):
-    await callback.answer('Выбран каталог')
-    await callback.message.edit_text('Ку', reply_markup=await inline_cars())# заменить текст на указанный тут и заменит кнопки на кнопки из функции
